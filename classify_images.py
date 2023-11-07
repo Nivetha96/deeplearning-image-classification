@@ -66,11 +66,10 @@ def classify_images(images_dir, results_dic, model):
            None - results_dic is mutable data type so no return needed.         
     """
     for label in results_dic:
-        classifier_label = classifier(images_dir+label, model)
-        classifier_label_list = [x.lower().lstrip() for x in classifier_label.split(",")]
+        classifier_label = classifier(images_dir+label, model).lower().strip()
         results_dic[label].append(classifier_label)
         #print(classifier_label_list)
-        if results_dic[label][0] in classifier_label_list:
+        if results_dic[label][0] in classifier_label:
             results_dic[label].append(1)
         else:
             results_dic[label].append(0)
